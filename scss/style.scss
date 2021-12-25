@@ -1,0 +1,136 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: box-sizing;
+}
+
+body {
+  height: 100vh;
+  overflow: hidden;
+}
+.main-screen {
+  background: rgb(32, 176, 219);
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  transition: transform 0.5s ease;
+}
+.hidden {
+  display: none;
+}
+.scroll-top {
+  transform: translateY(-100vh);
+}
+
+.game-start {
+  padding: 25px 30px;
+  background: rgb(228, 132, 64);
+  border-radius: 50px;
+  font-size: 50px;
+  width: 60vw;
+  text-align: center;
+  box-shadow: -7px -4px 10px black;
+  color: rgb(32, 29, 29);
+  transition: 0.1s box-shadow ease;
+  margin-top: -150px;
+  &:active {
+    box-shadow: 9px 10px 16px 1px black;
+  }
+}
+.game-continue {
+  margin-top: 50px;
+  padding: 25px;
+  background: rgb(64, 228, 119);
+  border-radius: 50px;
+  font-size: 50px;
+  width: 60vw;
+  text-align: center;
+  box-shadow: -7px -4px 10px rgb(46, 45, 45);
+  color: rgb(32, 29, 29);
+  transition: 0.1s box-shadow ease;
+  &:active {
+    box-shadow: 9px 10px 16px 1px black;
+  }
+}
+
+.clicker {
+  font-size: 40px;
+  margin-top: 150px;
+  height: 250px;
+  width: 250px;
+  position: relative;
+  color: #fff;
+  text-transform: uppercase;
+  &::before {
+    content: "";
+    position: absolute;
+    top: -35%;
+    left: 0%;
+    background: url(../img/ball.png) center no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    // transform: translateX(50%) translateY(50%);
+    animation: animate 5s infinite linear;
+  }
+}
+@keyframes animate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.game-footer {
+  align-self: center;
+  justify-self: end;
+  margin-bottom: 15px;
+  color: rgb(219, 202, 202);
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.game-screen {
+  position: relative;
+  height: 100vh;
+  background: rgb(32, 219, 41);
+  transition: transform 0.5s ease;
+}
+.game-conteiner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 250px;
+  height: 100%;
+}
+
+.ball-count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 30px;
+  min-width: 150px;
+  background: rgb(255, 12, 12);
+  border-radius: 1050px;
+  font-size: 80px;
+}
+
+.click-count {
+  margin-top: 150px;
+  font-size: 40px;
+  background: coral;
+  width: 50%;
+  padding: 25px;
+  text-align: center;
+  border-radius: 50px;
+  cursor: pointer;
+  color: rgb(32, 29, 29);
+  box-shadow: -7px -4px 10px rgb(136, 127, 127);
+  &:active {
+    box-shadow: 9px 10px 16px 1px rgb(77, 51, 51);
+  }
+}
