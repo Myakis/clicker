@@ -33,6 +33,9 @@ body {
   -o-transition: transform 0.5s ease;
   transition: transform 0.5s ease;
   transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
 }
 
 .hidden {
@@ -47,6 +50,7 @@ body {
 
 .game-start {
   padding: 25px 30px;
+  cursor: pointer;
   background: #e48440;
   border-radius: 50px;
   font-size: 50px;
@@ -141,14 +145,7 @@ body {
 }
 
 .game-screen {
-  position: relative;
   height: 100vh;
-  background: #20db29;
-  -webkit-transition: -webkit-transform 0.5s ease;
-  transition: -webkit-transform 0.5s ease;
-  -o-transition: transform 0.5s ease;
-  transition: transform 0.5s ease;
-  transition: transform 0.5s ease, -webkit-transform 0.5s ease;
 }
 
 .game-conteiner {
@@ -163,7 +160,22 @@ body {
       -ms-flex-align: center;
           align-items: center;
   padding-top: 250px;
+  -webkit-transition: -webkit-transform 0.5s ease;
+  transition: -webkit-transform 0.5s ease;
+  -o-transition: transform 0.5s ease;
+  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+  background: #20db29;
   height: 100%;
+}
+
+.level {
+  display: block;
+  padding-bottom: 10px;
+  font-size: 25px;
+}
+.level span {
+  color: #1c6666;
 }
 
 .ball-count {
@@ -176,11 +188,14 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 50px 30px;
-  min-width: 150px;
+  padding: 35px 25px;
+  min-width: 250px;
+  min-height: 250px;
   background: #ff0c0c;
-  border-radius: 1050px;
+  line-height: 0.5em;
+  border-radius: 50%;
   font-size: 80px;
+  cursor: pointer;
 }
 
 .click-count {
@@ -199,4 +214,48 @@ body {
 .click-count:active {
   -webkit-box-shadow: 9px 10px 16px 1px #4d3333;
           box-shadow: 9px 10px 16px 1px #4d3333;
+}
+
+.autoclicker {
+  margin-top: 50px;
+  font-size: 40px;
+  background: #50ffff;
+  padding: 25px;
+  text-align: center;
+  border-radius: 50px;
+  cursor: pointer;
+  color: #201d1d;
+  -webkit-box-shadow: -7px -4px 10px #4c64ee;
+          box-shadow: -7px -4px 10px #4c64ee;
+}
+.autoclicker:active {
+  -webkit-box-shadow: 9px 10px 16px 1px #1025e4;
+          box-shadow: 9px 10px 16px 1px #1025e4;
+}
+
+.factor-clicker {
+  margin-top: 50px;
+  font-size: 40px;
+  background: #50ffff;
+  padding: 25px;
+  text-align: center;
+  border-radius: 50px;
+  cursor: pointer;
+  color: #201d1d;
+  -webkit-box-shadow: -7px -4px 10px #4c64ee;
+          box-shadow: -7px -4px 10px #4c64ee;
+}
+.factor-clicker:active {
+  -webkit-box-shadow: 9px 10px 16px 1px #1025e4;
+          box-shadow: 9px 10px 16px 1px #1025e4;
+}
+
+.level-Up {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }

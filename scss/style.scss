@@ -18,16 +18,19 @@ body {
   flex-direction: column;
   text-align: center;
   transition: transform 0.5s ease;
+  transform: translateY(0);
 }
 .hidden {
   display: none;
 }
+
 .scroll-top {
   transform: translateY(-100vh);
 }
 
 .game-start {
   padding: 25px 30px;
+  cursor: pointer;
   background: rgb(228, 132, 64);
   border-radius: 50px;
   font-size: 50px;
@@ -95,28 +98,38 @@ body {
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 .game-screen {
-  position: relative;
   height: 100vh;
-  background: rgb(32, 219, 41);
-  transition: transform 0.5s ease;
 }
 .game-conteiner {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 250px;
+  transition: transform 0.5s ease;
+  background: rgb(32, 219, 41);
   height: 100%;
+}
+.level {
+  display: block;
+  padding-bottom: 10px;
+  font-size: 25px;
+  span {
+    color: rgb(28, 102, 102);
+  }
 }
 
 .ball-count {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 50px 30px;
-  min-width: 150px;
+  padding: 35px 25px;
+  min-width: 250px;
+  min-height: 250px;
   background: rgb(255, 12, 12);
-  border-radius: 1050px;
+  line-height: 0.5em;
+  border-radius: 50%;
   font-size: 80px;
+  cursor: pointer;
 }
 
 .click-count {
@@ -133,4 +146,39 @@ body {
   &:active {
     box-shadow: 9px 10px 16px 1px rgb(77, 51, 51);
   }
+}
+
+.autoclicker {
+  margin-top: 50px;
+  font-size: 40px;
+  background: rgb(80, 255, 255);
+  padding: 25px;
+  text-align: center;
+  border-radius: 50px;
+  cursor: pointer;
+  color: rgb(32, 29, 29);
+  box-shadow: -7px -4px 10px rgb(76, 100, 238);
+  &:active {
+    box-shadow: 9px 10px 16px 1px rgb(16, 37, 228);
+  }
+}
+
+.factor-clicker {
+  margin-top: 50px;
+  font-size: 40px;
+  background: rgb(80, 255, 255);
+  padding: 25px;
+  text-align: center;
+  border-radius: 50px;
+  cursor: pointer;
+  color: rgb(32, 29, 29);
+  box-shadow: -7px -4px 10px rgb(76, 100, 238);
+  &:active {
+    box-shadow: 9px 10px 16px 1px rgb(16, 37, 228);
+  }
+}
+
+.level-Up {
+  flex-direction: column;
+  display: flex;
 }

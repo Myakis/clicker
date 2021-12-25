@@ -11,16 +11,34 @@
     <div class="main-screen">
       <div class="clicker">Clicker game</div>
       <div class="game-wrapper">
-        <h2 class="game-start">Начать игру</h2>
-        <h2 class="game-continue hidden">Продолжить</h2>
+        <h2 class="game-start" onselectstart="return false">Начать игру</h2>
+        <h2 class="game-continue hidden" onselectstart="return false">
+          Продолжить
+        </h2>
       </div>
       <div class="game-footer">Game by Andrew Myakis</div>
     </div>
     <div class="game-screen">
-      <div class="game-conteiner">
-        <div class="ball-count">0</div>
-        <p class="click-count">Клик</p>
+      <div class="game-conteiner" onselectstart="return false">
+        <strong class="level">Level <span>1</span></strong>
+        <div class="ball-count">Кликай</div>
+        <!-- <p class="click-count" onselectstart="return false">Клик</p> -->
+        <div class="level-Up">
+          <p class="factor-clicker" data-count="100" data-level="1">
+            Плюс 1 Level(100)
+          </p>
+          <p class="factor-clicker" data-count="1000" data-level="10">
+            Плюс 10 Level(1000)
+          </p>
+          <p class="factor-clicker" data-count="10000" data-level="100">
+            Плюс 100 Level(10000)
+          </p>
+          <p class="autoclicker">Автокликер (100000)</p>
+        </div>
       </div>
+    </div>
+    <div class="game-end">
+      <p class="end-text">Конец</p>
     </div>
 
     <script src="js/main.js"></script>
