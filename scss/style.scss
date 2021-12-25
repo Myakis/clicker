@@ -33,7 +33,7 @@ body {
   cursor: pointer;
   background: rgb(228, 132, 64);
   border-radius: 50px;
-  font-size: 50px;
+  font-size: 20px;
   width: 60vw;
   text-align: center;
   box-shadow: -7px -4px 10px black;
@@ -62,7 +62,7 @@ body {
 
 .clicker {
   font-size: 40px;
-  margin-top: 150px;
+  margin-top: 100px;
   height: 250px;
   width: 250px;
   position: relative;
@@ -103,8 +103,9 @@ body {
 .game-conteiner {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  padding-top: 250px;
+
   transition: transform 0.5s ease;
   background: rgb(32, 219, 41);
   height: 100%;
@@ -123,8 +124,8 @@ body {
   align-items: center;
   justify-content: center;
   padding: 35px 25px;
-  min-width: 250px;
-  min-height: 250px;
+  min-width: 150px;
+  min-height: 150px;
   background: rgb(255, 12, 12);
   line-height: 0.5em;
   border-radius: 50%;
@@ -149,10 +150,10 @@ body {
 }
 
 .autoclicker {
-  margin-top: 50px;
-  font-size: 40px;
+  margin-top: 30px;
+  font-size: 20px;
   background: rgb(80, 255, 255);
-  padding: 25px;
+  padding: 15px;
   text-align: center;
   border-radius: 50px;
   cursor: pointer;
@@ -164,10 +165,10 @@ body {
 }
 
 .factor-clicker {
-  margin-top: 50px;
-  font-size: 40px;
+  margin-top: 30px;
+  font-size: 20px;
   background: rgb(80, 255, 255);
-  padding: 25px;
+  padding: 15px;
   text-align: center;
   border-radius: 50px;
   cursor: pointer;

@@ -53,7 +53,7 @@ body {
   cursor: pointer;
   background: #e48440;
   border-radius: 50px;
-  font-size: 50px;
+  font-size: 20px;
   width: 60vw;
   text-align: center;
   -webkit-box-shadow: -7px -4px 10px black;
@@ -95,7 +95,7 @@ body {
 
 .clicker {
   font-size: 40px;
-  margin-top: 150px;
+  margin-top: 100px;
   height: 250px;
   width: 250px;
   position: relative;
@@ -156,10 +156,11 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding-top: 250px;
   -webkit-transition: -webkit-transform 0.5s ease;
   transition: -webkit-transform 0.5s ease;
   -o-transition: transform 0.5s ease;
@@ -189,8 +190,8 @@ body {
       -ms-flex-pack: center;
           justify-content: center;
   padding: 35px 25px;
-  min-width: 250px;
-  min-height: 250px;
+  min-width: 150px;
+  min-height: 150px;
   background: #ff0c0c;
   line-height: 0.5em;
   border-radius: 50%;
@@ -217,10 +218,10 @@ body {
 }
 
 .autoclicker {
-  margin-top: 50px;
-  font-size: 40px;
+  margin-top: 30px;
+  font-size: 20px;
   background: #50ffff;
-  padding: 25px;
+  padding: 15px;
   text-align: center;
   border-radius: 50px;
   cursor: pointer;
@@ -234,10 +235,10 @@ body {
 }
 
 .factor-clicker {
-  margin-top: 50px;
-  font-size: 40px;
+  margin-top: 30px;
+  font-size: 20px;
   background: #50ffff;
-  padding: 25px;
+  padding: 15px;
   text-align: center;
   border-radius: 50px;
   cursor: pointer;
