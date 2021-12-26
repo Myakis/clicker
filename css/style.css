@@ -3,6 +3,7 @@
   margin: 0;
   -webkit-box-sizing: box-sizing;
           box-sizing: box-sizing;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
 
 body {
@@ -198,6 +199,11 @@ body {
   border-radius: 50%;
   font-size: 80px;
   cursor: pointer;
+}
+.ball-count :focus,
+.ball-count :active {
+  outline: none !important;
+  outline-color: transparent !important;
 }
 
 .click-count {
