@@ -7,6 +7,7 @@ const autoclickrt = document.querySelector(".autoclicker");
 const factorBtn = document.querySelector(".factor-clicker");
 const gameConteiner = document.querySelector(".game-conteiner");
 const level = document.querySelector(".level").firstElementChild;
+const reboot = document.querySelector(".end-reboot");
 
 //
 let yourCount = 0;
@@ -21,6 +22,10 @@ function clicker() {
 function gameLose() {
   myLevel = "Ты проиграл";
   level.parentElement.innerHTML = myLevel;
+}
+
+function repeat() {
+  document.querySelector(".game-end").classList.remove("hidden");
 }
 btnStart.addEventListener("click", (event) => {
   mainScreen.classList.add("scroll-top");
@@ -38,28 +43,13 @@ autoclickrt.addEventListener("click", () => {
     yourCount -= "Lose";
     count.textContent = yourCount;
     gameLose();
+    repeat();
   }
 });
 
-// factorBtn.addEventListener("click", () => {
-//   if (yourCount >= 100) {
-//     factorCount += 1;
-//     myLevel += 1;
-//     level.innerHTML = myLevel;
-//     console.log(level);
-//     yourCount -= 100;
-//     count.textContent = yourCount;
-//   } else {
-//     yourCount -= "Lose";
-//     count.textContent = yourCount;
-//     gameLose();
-//   }
-// });
-
-// window.reload = () => {
-//   mainScreen.classList.add("scroll-bottom");
-//   gameScreen.classList.add("scroll-bottom");
-// };
+reboot.addEventListener("click", () => {
+  location.reload();
+});
 
 //ДЕЛЕГИРОВАНИЕ
 
@@ -82,6 +72,7 @@ gameConteiner.addEventListener("click", (event) => {
       yourCount -= "Lose";
       count.textContent = yourCount;
       gameLose();
+      setTimeout(repeat, 100);
     }
   }
 });
