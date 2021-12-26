@@ -197,7 +197,7 @@ body {
   background: #ff0c0c;
   line-height: 0.5em;
   border-radius: 50%;
-  font-size: 80px;
+  font-size: 50px;
   cursor: pointer;
 }
 .ball-count :focus,
@@ -226,9 +226,9 @@ body {
 
 .autoclicker {
   margin-top: 30px;
-  font-size: 20px;
+  font-size: 15px;
   background: #50ffff;
-  padding: 15px;
+  padding: 5px 15px;
   text-align: center;
   border-radius: 50px;
   cursor: pointer;
@@ -243,9 +243,9 @@ body {
 
 .factor-clicker {
   margin-top: 30px;
-  font-size: 20px;
+  font-size: 15px;
   background: #50ffff;
-  padding: 15px;
+  padding: 5px 15px;
   text-align: center;
   border-radius: 50px;
   cursor: pointer;

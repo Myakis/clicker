@@ -16,7 +16,7 @@ let myLevel = 1;
 function clicker() {
   yourCount += factorCount;
   count.textContent = yourCount;
-  count.style.fontSize = `${Math.floor(Math.random() * (130 - 80) + 80)}px `;
+  count.style.fontSize = `${Math.floor(Math.random() * (80 - 50) + 50)}px `;
 }
 function gameLose() {
   myLevel = "Ты проиграл";
