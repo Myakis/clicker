@@ -95,7 +95,7 @@ body {
     transform: rotate(0);
   }
   100% {
-    transform: rotate(360deg);
+    transform: rotate(-360deg);
   }
 }
 
@@ -103,6 +103,7 @@ body {
   align-self: center;
   justify-self: end;
   margin-bottom: 15px;
+
   color: rgb(219, 202, 202);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -164,9 +165,11 @@ body {
     box-shadow: 9px 10px 16px 1px rgb(77, 51, 51);
   }
 }
-
+.autoclick-div {
+  display: flex;
+}
 .autoclicker {
-  margin-top: 30px;
+  min-width: 170px;
   font-size: 15px;
   background: rgb(80, 255, 255);
   padding: 5px 15px;
@@ -241,4 +244,10 @@ body {
   cursor: pointer;
   color: #fff;
   padding: 35px;
+  img {
+    animation: animate 5s infinite linear;
+    display: block;
+    margin: auto;
+    max-width: 50%;
+  }
 }

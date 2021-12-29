@@ -128,8 +128,8 @@ body {
             transform: rotate(0);
   }
   100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    -webkit-transform: rotate(-360deg);
+            transform: rotate(-360deg);
   }
 }
 
@@ -139,8 +139,8 @@ body {
             transform: rotate(0);
   }
   100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    -webkit-transform: rotate(-360deg);
+            transform: rotate(-360deg);
   }
 }
 .game-footer {
@@ -232,8 +232,14 @@ body {
           box-shadow: 9px 10px 16px 1px #4d3333;
 }
 
+.autoclick-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .autoclicker {
-  margin-top: 30px;
+  min-width: 170px;
   font-size: 15px;
   background: #50ffff;
   padding: 5px 15px;
@@ -330,4 +336,11 @@ body {
   cursor: pointer;
   color: #fff;
   padding: 35px;
+}
+.end-reboot img {
+  -webkit-animation: animate 5s infinite linear;
+          animation: animate 5s infinite linear;
+  display: block;
+  margin: auto;
+  max-width: 50%;
 }

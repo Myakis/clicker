@@ -11,13 +11,14 @@ const reboot = document.querySelector(".end-reboot");
 
 //
 let yourCount = 0;
-let factorCount = 1000;
+let factorCount = 1;
 let myLevel = 1;
 
 function clicker() {
   yourCount += factorCount;
   count.textContent = yourCount;
   count.style.fontSize = `${Math.floor(Math.random() * (80 - 50) + 50)}px `;
+  randomColor();
 }
 function gameLose() {
   myLevel = "Ты проиграл";
@@ -35,11 +36,23 @@ btnStart.addEventListener("click", (event) => {
 
 count.addEventListener("click", clicker);
 //Автокликер
-autoclickrt.addEventListener("click", () => {
-  if (yourCount > 100000) {
+autoclickrt.addEventListener("click", (event) => {
+  //Повторяющийся код
+  let currentCount = +event.target.firstElementChild.innerHTML;
+  //
+  console.log(currentCount);
+  if (yourCount >= currentCount) {
     setInterval(clicker, 1000);
-    yourCount -= 100000;
+    yourCount -= currentCount;
     count.textContent = yourCount;
+    ///Увеличение количества покупки уровней
+    let countSpan = +event.target.nextElementSibling.innerHTML
+      .match(/\d+/gi)
+      .join("");
+    event.target.nextElementSibling.innerHTML = `x${(countSpan += 1)}`;
+    ///
+    event.target.firstElementChild.innerHTML =
+      +event.target.firstElementChild.innerHTML + 100000;
   } else {
     yourCount -= "Lose";
     count.textContent = yourCount;
@@ -52,40 +65,48 @@ reboot.addEventListener("click", () => {
   location.reload();
 });
 
+function randomColor() {
+  count.style.background = `rgb(${Math.round(Math.random() * 255)},${Math.round(
+    Math.random() * 255
+  )},${Math.round(Math.random() * 255)})`;
+}
+
 //ДЕЛЕГИРОВАНИЕ
 
 gameConteiner.addEventListener("click", (event) => {
-  let currentCount = +event.target.firstElementChild.innerHTML;
-  const datasetCount = +event.target.dataset.count;
-  const datasetLvl = +event.target.dataset.level;
-  ////
-  if (
-    event.target.className === "factor-clicker" ||
-    event.target.nodeName === "SPAN"
-  ) {
-    if (yourCount >= currentCount) {
-      // event.stopPropagation();
-      factorCount += datasetLvl;
-      myLevel += datasetLvl;
-      level.innerHTML = myLevel;
+  try {
+    let currentCount = +event.target.firstElementChild.innerHTML;
+    const datasetCount = +event.target.dataset.count;
+    const datasetLvl = +event.target.dataset.level;
+    ////
+    if (
+      event.target.className === "factor-clicker"
+      // || event.target.nodeName === "SPAN"
+    ) {
+      if (yourCount >= currentCount) {
+        // event.stopPropagation();
+        factorCount += datasetLvl;
+        myLevel += datasetLvl;
+        level.innerHTML = myLevel;
 
-      yourCount -= currentCount;
-      count.textContent = yourCount;
-      event.target.dataset.count = +event.target.dataset.count;
+        yourCount -= currentCount;
+        count.textContent = yourCount;
+        event.target.dataset.count = +event.target.dataset.count;
 
-      ///Увеличение количества покупки уровней
-      let countSpan = +event.target.nextElementSibling.innerHTML
-        .match(/\d+/gi)
-        .join("");
-      event.target.nextElementSibling.innerHTML = `x${(countSpan += 1)}`;
-      //Увеличение
-      event.target.firstElementChild.innerHTML =
-        +event.target.firstElementChild.innerHTML + datasetCount;
-    } else {
-      yourCount -= "Lose";
-      count.textContent = yourCount;
-      gameLose();
-      setTimeout(repeat, 100);
+        ///Увеличение количества покупки уровней
+        let countSpan = +event.target.nextElementSibling.innerHTML
+          .match(/\d+/gi)
+          .join("");
+        event.target.nextElementSibling.innerHTML = `x${(countSpan += 1)}`;
+        //Увеличение
+        event.target.firstElementChild.innerHTML =
+          +event.target.firstElementChild.innerHTML + datasetCount;
+      } else {
+        yourCount -= "Lose";
+        count.textContent = yourCount;
+        gameLose();
+        setTimeout(repeat, 100);
+      }
     }
-  }
+  } catch (error) {}
 });
