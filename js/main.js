@@ -48,7 +48,7 @@ count.addEventListener("click", clicker);
 let currentCount = 100000;
 autoclickrt.addEventListener("click", (event) => {
   console.log(currentCount);
-  function name() {
+  (function () {
     if (yourCount >= currentCount) {
       setInterval(clicker, 1000);
       yourCount -= currentCount;
@@ -70,9 +70,7 @@ autoclickrt.addEventListener("click", (event) => {
       gameLose();
       repeat();
     }
-  }
-
-  name();
+  })();
 });
 //Если проиграл
 reboot.addEventListener("click", () => {
