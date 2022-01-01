@@ -13,7 +13,7 @@ const formatter = new Intl.NumberFormat("ru");
 
 //
 let yourCount = 0;
-let factorCount = 1000;
+let factorCount = 1;
 let myLevel = 0;
 
 //Random number
