@@ -13,7 +13,7 @@ const formatter = new Intl.NumberFormat("ru");
 
 //
 let yourCount = 0;
-let factorCount = 100000;
+let factorCount = 1;
 let myLevel = 0;
 
 //Random number
@@ -52,13 +52,17 @@ autoclickrt.addEventListener("click", (event) => {
     if (yourCount >= currentCount) {
       setInterval(clicker, 1000);
       yourCount -= currentCount;
+      currentCount += 100000;
       count.textContent = formatter.format(yourCount);
+      ///Увеличение количества покупки уровней
       let countSpan = +event.target.nextElementSibling.innerHTML
         .match(/\d+/gi)
         .join("");
       event.target.nextElementSibling.innerHTML = `x${(countSpan += 1)}`;
+      //
+
       let currentPirce = currentCount;
-      currentCount += 100000;
+
       event.target.firstElementChild.innerHTML = formatter.format(currentPirce);
     } else {
       yourCount -= "Lose";
@@ -69,29 +73,6 @@ autoclickrt.addEventListener("click", (event) => {
   }
 
   name();
-
-  //Повторяющийся код
-  // let currentCount = +event.target.firstElementChild.innerHTML;
-  // //
-  // console.log(currentCount);
-  // if (yourCount >= currentCount) {
-  //   setInterval(clicker, 1000);
-  //   yourCount -= currentCount;
-  //   count.textContent = formatter.format(yourCount);
-  //   ///Увеличение количества покупки уровней
-  //   let countSpan = +event.target.nextElementSibling.innerHTML
-  //     .match(/\d+/gi)
-  //     .join("");
-  //   event.target.nextElementSibling.innerHTML = `x${(countSpan += 1)}`;
-  //   ///
-  //   let currentPirce = +event.target.firstElementChild.innerHTML + 100000;
-  //   event.target.firstElementChild.innerHTML = formatter.format(currentPirce);
-  // } else {
-  //   yourCount -= "Lose";
-  //   count.textContent = yourCount;
-  //   gameLose();
-  //   repeat();
-  // }
 });
 //Если проиграл
 reboot.addEventListener("click", () => {
