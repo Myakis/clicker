@@ -9,15 +9,22 @@ const gameConteiner = document.querySelector(".game-conteiner");
 const level = document.querySelector(".level").firstElementChild;
 const reboot = document.querySelector(".end-reboot");
 
+let formatter = new Intl.NumberFormat("ru");
+
 //
 let yourCount = 0;
 let factorCount = 1;
-let myLevel = 1;
+let myLevel = 0;
 
+//Random number
+function random(a, b) {
+  return Math.floor(Math.random() * (b - a + 1) + a);
+}
 function clicker() {
   yourCount += factorCount;
-  count.textContent = yourCount;
-  count.style.fontSize = `${Math.floor(Math.random() * (80 - 50) + 50)}px `;
+  count.textContent = formatter.format(yourCount);
+
+  count.style.fontSize = `${random(50, 40)}px `;
   randomColor();
 }
 function gameLose() {
@@ -44,7 +51,7 @@ autoclickrt.addEventListener("click", (event) => {
   if (yourCount >= currentCount) {
     setInterval(clicker, 1000);
     yourCount -= currentCount;
-    count.textContent = yourCount;
+    count.textContent = formatter.format(yourCount);
     ///Увеличение количества покупки уровней
     let countSpan = +event.target.nextElementSibling.innerHTML
       .match(/\d+/gi)
@@ -75,14 +82,14 @@ function randomColor() {
 
 gameConteiner.addEventListener("click", (event) => {
   try {
-    let currentCount = +event.target.firstElementChild.innerHTML;
+    let currentCount = +event.target.firstElementChild.innerHTML
+      .match(/[^\s]+/g)
+      .join("");
     const datasetCount = +event.target.dataset.count;
     const datasetLvl = +event.target.dataset.level;
     ////
-    if (
-      event.target.className === "factor-clicker"
-      // || event.target.nodeName === "SPAN"
-    ) {
+    if (event.target.className === "factor-clicker") {
+      // || event.target.nodeName === "SPAN")
       if (yourCount >= currentCount) {
         // event.stopPropagation();
         factorCount += datasetLvl;
@@ -90,17 +97,23 @@ gameConteiner.addEventListener("click", (event) => {
         level.innerHTML = myLevel;
 
         yourCount -= currentCount;
-        count.textContent = yourCount;
-        event.target.dataset.count = +event.target.dataset.count;
+        //change ball with num
+        count.textContent = formatter.format(yourCount);
+        // event.target.dataset.count = +event.target.dataset.count;
 
         ///Увеличение количества покупки уровней
         let countSpan = +event.target.nextElementSibling.innerHTML
           .match(/\d+/gi)
           .join("");
         event.target.nextElementSibling.innerHTML = `x${(countSpan += 1)}`;
+
         //Увеличение
-        event.target.firstElementChild.innerHTML =
-          +event.target.firstElementChild.innerHTML + datasetCount;
+        let priceLvl = event.target.firstElementChild;
+        let pric = priceLvl.textContent;
+        console.log(pric);
+
+        priceLvl.innerHTML = +priceLvl.innerHTML + datasetCount;
+        console.log(pric);
       } else {
         yourCount -= "Lose";
         count.textContent = yourCount;
@@ -110,3 +123,5 @@ gameConteiner.addEventListener("click", (event) => {
     }
   } catch (error) {}
 });
+// console.log("2 000".match(/[^\s]+/g));
+// console.log(5000 > "2 000".match(/[^\s]+/g).join(""));
