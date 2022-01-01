@@ -4,6 +4,7 @@ const mainScreen = document.querySelector(".main-screen");
 const count = document.querySelector(".ball-count");
 const click = document.querySelector(".click-count");
 const autoclickrt = document.querySelector(".autoclicker");
+const divAutoclicker = document.querySelector(".autoclick-div");
 const factorBtn = document.querySelector(".factor-clicker");
 const gameConteiner = document.querySelector(".game-conteiner");
 const level = document.querySelector(".level").firstElementChild;
@@ -46,29 +47,55 @@ btnStart.addEventListener("click", (event) => {
 count.addEventListener("click", clicker);
 //Автокликер
 let currentCount = 100000;
-autoclickrt.addEventListener("click", (event) => {
-  console.log(currentCount);
+divAutoclicker.addEventListener("click", (event) => {
+  if (event.target.className === "autoclicker") {
+    if (yourCount >= currentCount) {
+      setInterval(clicker, 1000);
+      yourCount -= currentCount;
+      currentCount += 100000;
+      count.textContent = formatter.format(yourCount);
+      ///Увеличение количества покупки уровней
+      let countSpan = +event.target.nextElementSibling.innerHTML
+        .match(/\d+/gi)
+        .join("");
+      event.target.nextElementSibling.innerHTML = `x${(countSpan += 1)}`;
+      //
 
-  if (yourCount >= currentCount) {
-    setInterval(clicker, 1000);
-    yourCount -= currentCount;
-    currentCount += 100000;
-    count.textContent = formatter.format(yourCount);
-    ///Увеличение количества покупки уровней
-    let countSpan = +event.target.nextElementSibling.innerHTML
-      .match(/\d+/gi)
-      .join("");
-    event.target.nextElementSibling.innerHTML = `x${(countSpan += 1)}`;
-    //
+      let currentPirce = currentCount;
 
-    let currentPirce = currentCount;
+      event.target.firstElementChild.innerHTML = formatter.format(currentPirce);
+    } else {
+      yourCount -= "Lose";
+      count.textContent = yourCount;
+      gameLose();
+      repeat();
+    }
+  }
+  //При нажатии на span в блоке autoclick-div
+  //Костыль, который нужно будет пофкисить
+  if (event.target.className === "autoclicker__count") {
+    let parent = event.target.parentElement;
+    if (yourCount >= currentCount) {
+      setInterval(clicker, 1000);
+      yourCount -= currentCount;
+      currentCount += 100000;
+      count.textContent = formatter.format(yourCount);
+      ///Увеличение количества покупки уровней
+      let countSpan = +parent.nextElementSibling.innerHTML
+        .match(/\d+/gi)
+        .join("");
+      parent.nextElementSibling.innerHTML = `x${(countSpan += 1)}`;
+      //
 
-    event.target.firstElementChild.innerHTML = formatter.format(currentPirce);
-  } else {
-    yourCount -= "Lose";
-    count.textContent = yourCount;
-    gameLose();
-    repeat();
+      let currentPirce = currentCount;
+
+      parent.firstElementChild.innerHTML = formatter.format(currentPirce);
+    } else {
+      yourCount -= "Lose";
+      count.textContent = yourCount;
+      gameLose();
+      repeat();
+    }
   }
 });
 //Если проиграл
