@@ -329,7 +329,7 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background: rgba(180, 11, 90, 0.795);
+  background: #b40b5a;
 }
 
 .end-reboot {
