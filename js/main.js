@@ -13,7 +13,7 @@ const formatter = new Intl.NumberFormat("ru");
 
 //
 let yourCount = 0;
-let factorCount = 1;
+let factorCount = 1000;
 let myLevel = 0;
 
 //Random number
@@ -86,39 +86,80 @@ function randomColor() {
 
 gameConteiner.addEventListener("click", (event) => {
   try {
-    let dataPrice = +event.target.dataset.price;
-    const datasetCount = +event.target.dataset.count;
-    const datasetLvl = +event.target.dataset.level;
     if (event.target.className === "factor-clicker") {
-      if (yourCount >= dataPrice) {
-        // event.stopPropagation();
-        factorCount += datasetLvl;
-        myLevel += datasetLvl;
-        level.innerHTML = myLevel;
+      let dataPrice = +event.target.dataset.price;
+      const datasetCount = +event.target.dataset.count;
+      const datasetLvl = +event.target.dataset.level;
+      if (event.target.className === "factor-clicker") {
+        if (yourCount >= dataPrice) {
+          // event.stopPropagation();
+          factorCount += datasetLvl;
+          myLevel += datasetLvl;
+          level.innerHTML = myLevel;
 
-        yourCount -= dataPrice;
-        //change ball with num
-        count.textContent = formatter.format(yourCount);
+          yourCount -= dataPrice;
+          //change ball with num
+          count.textContent = formatter.format(yourCount);
 
-        ///Увеличение количества покупки уровней
-        let countSpan = +event.target.nextElementSibling.innerHTML
-          .match(/\d+/gi)
-          .join("");
-        event.target.nextElementSibling.innerHTML = `x${(countSpan += 1)}`;
+          ///Увеличение количества покупки уровней
+          let countSpan = +event.target.nextElementSibling.innerHTML
+            .match(/\d+/gi)
+            .join("");
+          event.target.nextElementSibling.innerHTML = `x${(countSpan += 1)}`;
 
-        //Увеличение
-        let priceLvl = event.target.firstElementChild;
-        dataPrice += datasetCount;
-        let formatPrice =
-          +priceLvl.innerHTML.match(/\d+/gi).join("") + datasetCount;
+          //Увеличение
+          let priceLvl = event.target.firstElementChild;
+          dataPrice += datasetCount;
+          let formatPrice =
+            +priceLvl.innerHTML.match(/\d+/gi).join("") + datasetCount;
 
-        priceLvl.textContent = formatter.format(formatPrice);
-        event.target.dataset.price = +event.target.dataset.price + datasetCount;
-      } else {
-        yourCount -= "Lose";
-        count.textContent = yourCount;
-        gameLose();
-        setTimeout(repeat, 100);
+          priceLvl.textContent = formatter.format(formatPrice);
+          event.target.dataset.price =
+            +event.target.dataset.price + datasetCount;
+        } else {
+          yourCount -= "Lose";
+          count.textContent = yourCount;
+          gameLose();
+          setTimeout(repeat, 100);
+        }
+      }
+      //Жирный КОСТЫЛЬ из повторяющиегося кода(стать СЕНЬЕРОМ - пофиксить)
+    } else if (event.target.tagName === "SPAN") {
+      let parent = event.target.parentElement;
+      let dataPrice = +parent.dataset.price;
+      const datasetCount = +parent.dataset.count;
+      const datasetLvl = +parent.dataset.level;
+      if (parent.className === "factor-clicker") {
+        if (yourCount >= dataPrice) {
+          // event.stopPropagation();
+          factorCount += datasetLvl;
+          myLevel += datasetLvl;
+          level.innerHTML = myLevel;
+
+          yourCount -= dataPrice;
+          //change ball with num
+          count.textContent = formatter.format(yourCount);
+
+          ///Увеличение количества покупки уровней
+          let countSpan = +parent.nextElementSibling.innerHTML
+            .match(/\d+/gi)
+            .join("");
+          parent.nextElementSibling.innerHTML = `x${(countSpan += 1)}`;
+
+          //Увеличение
+          let priceLvl = parent.firstElementChild;
+          dataPrice += datasetCount;
+          let formatPrice =
+            +priceLvl.innerHTML.match(/\d+/gi).join("") + datasetCount;
+
+          priceLvl.textContent = formatter.format(formatPrice);
+          parent.dataset.price = +parent.dataset.price + datasetCount;
+        } else {
+          yourCount -= "Lose";
+          count.textContent = yourCount;
+          gameLose();
+          setTimeout(repeat, 100);
+        }
       }
     }
   } catch (error) {}
