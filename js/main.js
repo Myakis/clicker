@@ -13,7 +13,7 @@ const formatter = new Intl.NumberFormat("ru");
 
 //
 let yourCount = 0;
-let factorCount = 1;
+let factorCount = 1000;
 let myLevel = 0;
 
 //Random number
@@ -26,7 +26,7 @@ function clicker() {
   count.textContent = formatter.format(yourCount);
 
   count.style.fontSize = `${random(50, 40)}px `;
-  randomColor();
+  count.style.background = randomColor();
 }
 
 function gameLose() {
@@ -77,7 +77,7 @@ reboot.addEventListener("click", () => {
 });
 
 function randomColor() {
-  count.style.background = `rgb(${Math.round(Math.random() * 255)},${Math.round(
+  return `rgb(${Math.round(Math.random() * 255)},${Math.round(
     Math.random() * 255
   )},${Math.round(Math.random() * 255)})`;
 }
@@ -86,15 +86,9 @@ function randomColor() {
 
 gameConteiner.addEventListener("click", (event) => {
   try {
-    let currentCount = +event.target.firstElementChild.innerHTML
-      .match(/[^\s]+/g)
-      .join("");
-
     let dataPrice = +event.target.dataset.price;
-    console.log(dataPrice);
     const datasetCount = +event.target.dataset.count;
     const datasetLvl = +event.target.dataset.level;
-
     if (event.target.className === "factor-clicker") {
       if (yourCount >= dataPrice) {
         // event.stopPropagation();
@@ -129,5 +123,3 @@ gameConteiner.addEventListener("click", (event) => {
     }
   } catch (error) {}
 });
-
-console.log(formatter.format("100000000"));

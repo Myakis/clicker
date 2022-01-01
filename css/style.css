@@ -251,8 +251,8 @@ body {
           box-shadow: -7px -4px 10px #4c64ee;
 }
 .autoclicker:active {
-  -webkit-box-shadow: 9px 10px 16px 1px #1025e4;
-          box-shadow: 9px 10px 16px 1px #1025e4;
+  -webkit-box-shadow: 4px 2px 12px 1px #1025e4;
+          box-shadow: 4px 2px 12px 1px #1025e4;
 }
 
 .factor-clicker {
@@ -272,8 +272,8 @@ body {
   z-index: -1;
 }
 .factor-clicker:active {
-  -webkit-box-shadow: 9px 10px 16px 1px #1025e4;
-          box-shadow: 9px 10px 16px 1px #1025e4;
+  -webkit-box-shadow: 4px 2px 12px 1px #1025e4;
+          box-shadow: 4px 2px 12px 1px #1025e4;
 }
 
 .level-Up {
