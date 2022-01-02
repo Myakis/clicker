@@ -167,6 +167,10 @@ body {
 }
 .autoclick-div {
   display: flex;
+  align-items: center;
+  > p {
+    margin-right: 15px;
+  }
 }
 .autoclicker {
   min-width: 170px;
@@ -205,13 +209,14 @@ body {
 .level-Up {
   flex-direction: column;
   display: flex;
-  div {
+  > div {
     margin-top: 30px;
     display: inline-block;
     align-items: center;
     display: flex;
-    > span {
-      margin-left: 15px;
+
+    > p {
+      margin-right: 15px;
     }
   }
 }

@@ -37,6 +37,16 @@ function autoclickerRepeat() {
   yourCount += factorCount;
   count.textContent = formatter.format(yourCount);
 }
+//аудио
+function audipPlay(search) {
+  const audio = new Audio();
+  // audio.preload = "auto";
+
+  audio.src = search;
+
+  // audio.autoplay = true;
+  audio.play();
+}
 
 function gameLose() {
   myLevel = "Ты проиграл";
@@ -63,7 +73,7 @@ function autoclickerFunc(param) {
   if (yourCount >= currentCount) {
     setInterval(autoclickerRepeat, 1000);
     yourCount -= currentCount;
-    currentCount += 100000;
+    currentCount += 1000000;
     count.textContent = formatter.format(yourCount);
     ///Увеличение количества покупки уровней
     let countSpan = +param.nextElementSibling.innerHTML.match(/\d+/gi).join("");
@@ -81,7 +91,7 @@ function autoclickerFunc(param) {
   }
 }
 //Автокликер
-let currentCount = 100000;
+let currentCount = 1000000;
 divAutoclicker.addEventListener("click", (event) => {
   if (event.target.className === "autoclicker") {
     autoclickerFunc(event.target);

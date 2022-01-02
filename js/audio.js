@@ -7,4 +7,3 @@ function audipPlay(search) {
   audio.autoplay = true;
   audio.play();
 }
-console.dir(new Audio());

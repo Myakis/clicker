@@ -236,6 +236,12 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.autoclick-div > p {
+  margin-right: 15px;
 }
 
 .autoclicker {
@@ -285,7 +291,7 @@ body {
   display: -ms-flexbox;
   display: flex;
 }
-.level-Up div {
+.level-Up > div {
   margin-top: 30px;
   display: inline-block;
   -webkit-box-align: center;
@@ -295,8 +301,8 @@ body {
   display: -ms-flexbox;
   display: flex;
 }
-.level-Up div > span {
-  margin-left: 15px;
+.level-Up > div > p {
+  margin-right: 15px;
 }
 
 .game-end {
