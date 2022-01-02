@@ -14,7 +14,7 @@ const formatter = new Intl.NumberFormat("ru");
 
 //
 let yourCount = 0;
-let factorCount = 1;
+let factorCount = 100000;
 let myLevel = 1;
 
 //Random number
@@ -73,7 +73,7 @@ function autoclickerFunc(param) {
   if (yourCount >= currentCount) {
     setInterval(autoclickerRepeat, 1000);
     yourCount -= currentCount;
-    currentCount += 1000000;
+    currentCount += 100000;
     count.textContent = formatter.format(yourCount);
     ///Увеличение количества покупки уровней
     let countSpan = +param.nextElementSibling.innerHTML.match(/\d+/gi).join("");
@@ -91,7 +91,7 @@ function autoclickerFunc(param) {
   }
 }
 //Автокликер
-let currentCount = 1000000;
+let currentCount = 100000;
 divAutoclicker.addEventListener("click", (event) => {
   if (event.target.className === "autoclicker") {
     autoclickerFunc(event.target);
