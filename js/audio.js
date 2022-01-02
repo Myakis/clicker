@@ -3,6 +3,8 @@ function audipPlay(search) {
   audio.preload = "auto";
 
   audio.src = search;
-  audio.autoplay();
+
+  audio.autoplay = true;
   audio.play();
 }
+console.dir(new Audio());
