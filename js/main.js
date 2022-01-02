@@ -29,7 +29,7 @@ function clicker() {
 
   count.style.fontSize = `${random(50, 40)}px `;
   count.style.background = randomColor();
-  audipPlay("/audio/click2.mp3");
+  audipPlay("audio/click2.mp3");
   // document.querySelector(".audio2").play();
 }
 
@@ -41,7 +41,7 @@ function autoclickerRepeat() {
 function gameLose() {
   myLevel = "Ты проиграл";
   level.parentElement.innerHTML = myLevel;
-  audipPlay("/audio/lose.mp3");
+  audipPlay("audio/lose.mp3");
   // document.querySelector(".lost").play();
 }
 
@@ -58,7 +58,7 @@ count.addEventListener("click", clicker);
 //Автокликер функция
 
 function autoclickerFunc(param) {
-  audipPlay("/audio/click.mp3");
+  audipPlay("audio/click.mp3");
   // document.querySelector(".audio1").play();
   if (yourCount >= currentCount) {
     setInterval(autoclickerRepeat, 1000);
@@ -123,7 +123,7 @@ function clickConteiner(param) {
   let dataPrice = +param.dataset.price;
   const datasetCount = +param.dataset.count;
   const datasetLvl = +param.dataset.level;
-  audipPlay("/audio/click.mp3");
+  audipPlay("audio/click.mp3");
   // document.querySelector(".audio1").play();
   if (param.className === "factor-clicker") {
     if (yourCount >= dataPrice) {
