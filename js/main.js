@@ -14,8 +14,8 @@ const formatter = new Intl.NumberFormat("ru");
 
 //
 let yourCount = 0;
-let factorCount = 1;
-let myLevel = 0;
+let factorCount = 1000000;
+let myLevel = 1;
 
 //Random number
 function random(a, b) {
@@ -28,11 +28,18 @@ function clicker() {
 
   count.style.fontSize = `${random(50, 40)}px `;
   count.style.background = randomColor();
+  document.querySelector(".audio2").play();
+}
+
+function autoclickerRepeat() {
+  yourCount += factorCount;
+  count.textContent = formatter.format(yourCount);
 }
 
 function gameLose() {
   myLevel = "Ты проиграл";
   level.parentElement.innerHTML = myLevel;
+  document.querySelector(".lost").play();
 }
 
 function repeat() {
@@ -45,57 +52,41 @@ btnStart.addEventListener("click", (event) => {
 });
 
 count.addEventListener("click", clicker);
+//Автокликер функция
+
+function autoclickerFunc(param) {
+  document.querySelector(".audio1").play();
+  if (yourCount >= currentCount) {
+    setInterval(autoclickerRepeat, 1000);
+    yourCount -= currentCount;
+    currentCount += 100000;
+    count.textContent = formatter.format(yourCount);
+    ///Увеличение количества покупки уровней
+    let countSpan = +param.nextElementSibling.innerHTML.match(/\d+/gi).join("");
+    param.nextElementSibling.innerHTML = `x${(countSpan += 1)}`;
+    //
+
+    let currentPirce = currentCount;
+
+    param.firstElementChild.innerHTML = formatter.format(currentPirce);
+  } else {
+    yourCount -= "Lose";
+    count.textContent = yourCount;
+    gameLose();
+    repeat();
+  }
+}
 //Автокликер
 let currentCount = 100000;
 divAutoclicker.addEventListener("click", (event) => {
   if (event.target.className === "autoclicker") {
-    if (yourCount >= currentCount) {
-      setInterval(clicker, 1000);
-      yourCount -= currentCount;
-      currentCount += 100000;
-      count.textContent = formatter.format(yourCount);
-      ///Увеличение количества покупки уровней
-      let countSpan = +event.target.nextElementSibling.innerHTML
-        .match(/\d+/gi)
-        .join("");
-      event.target.nextElementSibling.innerHTML = `x${(countSpan += 1)}`;
-      //
-
-      let currentPirce = currentCount;
-
-      event.target.firstElementChild.innerHTML = formatter.format(currentPirce);
-    } else {
-      yourCount -= "Lose";
-      count.textContent = yourCount;
-      gameLose();
-      repeat();
-    }
+    autoclickerFunc(event.target);
   }
   //При нажатии на span в блоке autoclick-div
   //Костыль, который нужно будет пофкисить
   if (event.target.className === "autoclicker__count") {
     let parent = event.target.parentElement;
-    if (yourCount >= currentCount) {
-      setInterval(clicker, 1000);
-      yourCount -= currentCount;
-      currentCount += 100000;
-      count.textContent = formatter.format(yourCount);
-      ///Увеличение количества покупки уровней
-      let countSpan = +parent.nextElementSibling.innerHTML
-        .match(/\d+/gi)
-        .join("");
-      parent.nextElementSibling.innerHTML = `x${(countSpan += 1)}`;
-      //
-
-      let currentPirce = currentCount;
-
-      parent.firstElementChild.innerHTML = formatter.format(currentPirce);
-    } else {
-      yourCount -= "Lose";
-      count.textContent = yourCount;
-      gameLose();
-      repeat();
-    }
+    autoclickerFunc(parent);
   }
 });
 //Если проиграл
@@ -114,80 +105,51 @@ function randomColor() {
 gameConteiner.addEventListener("click", (event) => {
   try {
     if (event.target.className === "factor-clicker") {
-      let dataPrice = +event.target.dataset.price;
-      const datasetCount = +event.target.dataset.count;
-      const datasetLvl = +event.target.dataset.level;
-      if (event.target.className === "factor-clicker") {
-        if (yourCount >= dataPrice) {
-          // event.stopPropagation();
-          factorCount += datasetLvl;
-          myLevel += datasetLvl;
-          level.innerHTML = myLevel;
-
-          yourCount -= dataPrice;
-          //change ball with num
-          count.textContent = formatter.format(yourCount);
-
-          ///Увеличение количества покупки уровней
-          let countSpan = +event.target.nextElementSibling.innerHTML
-            .match(/\d+/gi)
-            .join("");
-          event.target.nextElementSibling.innerHTML = `x${(countSpan += 1)}`;
-
-          //Увеличение
-          let priceLvl = event.target.firstElementChild;
-          dataPrice += datasetCount;
-          let formatPrice =
-            +priceLvl.innerHTML.match(/\d+/gi).join("") + datasetCount;
-
-          priceLvl.textContent = formatter.format(formatPrice);
-          event.target.dataset.price =
-            +event.target.dataset.price + datasetCount;
-        } else {
-          yourCount -= "Lose";
-          count.textContent = yourCount;
-          gameLose();
-          setTimeout(repeat, 100);
-        }
-      }
+      clickConteiner(event.target);
       //Жирный КОСТЫЛЬ из повторяющиегося кода(стать СЕНЬЕРОМ - пофиксить)
-    } else if (event.target.tagName === "SPAN") {
+    }
+    if (event.target.tagName === "SPAN") {
       let parent = event.target.parentElement;
-      let dataPrice = +parent.dataset.price;
-      const datasetCount = +parent.dataset.count;
-      const datasetLvl = +parent.dataset.level;
-      if (parent.className === "factor-clicker") {
-        if (yourCount >= dataPrice) {
-          // event.stopPropagation();
-          factorCount += datasetLvl;
-          myLevel += datasetLvl;
-          level.innerHTML = myLevel;
-
-          yourCount -= dataPrice;
-          //change ball with num
-          count.textContent = formatter.format(yourCount);
-
-          ///Увеличение количества покупки уровней
-          let countSpan = +parent.nextElementSibling.innerHTML
-            .match(/\d+/gi)
-            .join("");
-          parent.nextElementSibling.innerHTML = `x${(countSpan += 1)}`;
-
-          //Увеличение
-          let priceLvl = parent.firstElementChild;
-          dataPrice += datasetCount;
-          let formatPrice =
-            +priceLvl.innerHTML.match(/\d+/gi).join("") + datasetCount;
-
-          priceLvl.textContent = formatter.format(formatPrice);
-          parent.dataset.price = +parent.dataset.price + datasetCount;
-        } else {
-          yourCount -= "Lose";
-          count.textContent = yourCount;
-          gameLose();
-          setTimeout(repeat, 100);
-        }
-      }
+      clickConteiner(parent);
     }
   } catch (error) {}
 });
+
+function clickConteiner(param) {
+  let dataPrice = +param.dataset.price;
+  const datasetCount = +param.dataset.count;
+  const datasetLvl = +param.dataset.level;
+  document.querySelector(".audio1").play();
+  if (param.className === "factor-clicker") {
+    if (yourCount >= dataPrice) {
+      // event.stopPropagation();
+      factorCount += datasetLvl;
+      myLevel += datasetLvl;
+      level.innerHTML = myLevel;
+
+      yourCount -= dataPrice;
+      //change ball with num
+      count.textContent = formatter.format(yourCount);
+
+      ///Увеличение количества покупки уровней
+      let countSpan = +param.nextElementSibling.innerHTML
+        .match(/\d+/gi)
+        .join("");
+      param.nextElementSibling.innerHTML = `x${(countSpan += 1)}`;
+
+      //Увеличение
+      let priceLvl = param.firstElementChild;
+      dataPrice += datasetCount;
+      let formatPrice =
+        +priceLvl.innerHTML.match(/\d+/gi).join("") + datasetCount;
+
+      priceLvl.textContent = formatter.format(formatPrice);
+      param.dataset.price = +param.dataset.price + datasetCount;
+    } else {
+      yourCount -= "Lose";
+      count.textContent = yourCount;
+      gameLose();
+      setTimeout(repeat, 100);
+    }
+  }
+}
