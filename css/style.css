@@ -70,10 +70,12 @@ body {
   transition: 0.1s box-shadow ease;
   transition: 0.1s box-shadow ease, 0.1s -webkit-box-shadow ease;
   margin-top: -150px;
+  -webkit-box-shadow: 0px 5px 2px #22294e;
+          box-shadow: 0px 5px 2px #22294e;
 }
 .game-start:active {
-  -webkit-box-shadow: 9px 10px 16px 1px black;
-          box-shadow: 9px 10px 16px 1px black;
+  -webkit-box-shadow: 0px 0px 0px #1b234d;
+          box-shadow: 0px 0px 0px #1b234d;
 }
 
 .game-continue {
@@ -175,7 +177,8 @@ body {
   -o-transition: transform 0.5s ease;
   transition: transform 0.5s ease;
   transition: transform 0.5s ease, -webkit-transform 0.5s ease;
-  background: #20db29;
+  background: #5973e6;
+  background: #20b0db;
   height: 100%;
 }
 
@@ -199,13 +202,13 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 35px 25px;
+  padding: 25px 15px;
   min-width: 150px;
   min-height: 150px;
   background: #ff0c0c;
   line-height: 0.5em;
   border-radius: 50%;
-  font-size: 50px;
+  font-size: 35px;
   cursor: pointer;
 }
 .ball-count :focus,
@@ -247,39 +250,38 @@ body {
 .autoclicker {
   min-width: 170px;
   font-size: 15px;
-  background: #50ffff;
+  background: #9452a5;
   padding: 5px 15px;
   text-align: center;
   border-radius: 50px;
   cursor: pointer;
   color: #201d1d;
-  -webkit-box-shadow: -7px -4px 10px #4c64ee;
-          box-shadow: -7px -4px 10px #4c64ee;
+  -webkit-box-shadow: 0px 5px 2px #22294e;
+          box-shadow: 0px 5px 2px #22294e;
 }
 .autoclicker:active {
-  -webkit-box-shadow: 4px 2px 12px 1px #1025e4;
-          box-shadow: 4px 2px 12px 1px #1025e4;
+  -webkit-box-shadow: 0px 0px 0px #1b234d;
+          box-shadow: 0px 0px 0px #1b234d;
 }
 
 .factor-clicker {
   font-size: 15px;
-  background: #50ffff;
+  background: #9452a5;
   padding: 5px 15px;
   text-align: center;
   border-radius: 50px;
   cursor: pointer;
   color: #201d1d;
-  -webkit-box-shadow: -7px -4px 10px #4c64ee;
-          box-shadow: -7px -4px 10px #4c64ee;
-  z-index: 5;
+  -webkit-box-shadow: 0px 5px 2px #22294e;
+          box-shadow: 0px 5px 2px #22294e;
   min-width: 170px;
 }
 .factor-clicker span {
   z-index: -1;
 }
 .factor-clicker:active {
-  -webkit-box-shadow: 4px 2px 12px 1px #1025e4;
-          box-shadow: 4px 2px 12px 1px #1025e4;
+  -webkit-box-shadow: 0px 0px 0px #1b234d;
+          box-shadow: 0px 0px 0px #1b234d;
 }
 
 .level-Up {

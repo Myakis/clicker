@@ -29,6 +29,7 @@ function clicker() {
 
   count.style.fontSize = `${random(50, 40)}px `;
   count.style.background = randomColor();
+  count.style.boxShadow = `1px 0px 15px 6px ${randomColor()}`;
   audipPlay("audio/click2.mp3");
   // document.querySelector(".audio2").play();
 }
@@ -128,7 +129,7 @@ gameConteiner.addEventListener("click", (event) => {
     }
   } catch (error) {}
 });
-
+//
 function clickConteiner(param) {
   let dataPrice = +param.dataset.price;
   const datasetCount = +param.dataset.count;
