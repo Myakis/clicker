@@ -88,8 +88,8 @@ body {
   font-size: 20px;
   width: 60vw;
   text-align: center;
-  -webkit-box-shadow: -7px -4px 10px #2e2d2d;
-          box-shadow: -7px -4px 10px #2e2d2d;
+  -webkit-box-shadow: 0px 5px 2px #22294e;
+          box-shadow: 0px 5px 2px #22294e;
   color: #201d1d;
   -webkit-transition: 0.1s -webkit-box-shadow ease;
   transition: 0.1s -webkit-box-shadow ease;
@@ -98,8 +98,8 @@ body {
   transition: 0.1s box-shadow ease, 0.1s -webkit-box-shadow ease;
 }
 .game-continue:active {
-  -webkit-box-shadow: 9px 10px 16px 1px black;
-          box-shadow: 9px 10px 16px 1px black;
+  -webkit-box-shadow: 0px 0px 0px #1b234d;
+          box-shadow: 0px 0px 0px #1b234d;
 }
 
 .clicker {

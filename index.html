@@ -1,77 +1,67 @@
 <!DOCTYPE html>
 <html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script async src="js/audio.js"></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Clicker</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script async src="js/audio.js"></script>
-  <link rel="stylesheet" href="css/style.css" />
-  <title>Clicker</title>
-</head>
-
-<body>
-  <div class="main-screen">
-    <div class="clicker">Clicker game</div>
-    <div class="game-wrapper">
-      <h2 class="game-start" onselectstart="return false">Начать игру</h2>
-      <h2 class="game-continue hidden" onselectstart="return false">
-        Продолжить
-      </h2>
+  <body>
+    <div class="main-screen">
+      <div class="clicker">Clicker game</div>
+      <div class="game-wrapper">
+        <h2 class="game-start" onselectstart="return false">Начать игру</h2>
+        <h2 class="game-continue" onselectstart="return false">Продолжить</h2>
+      </div>
+      <div class="game-footer">Game by Andrew Myakis</div>
     </div>
-    <div class="game-footer">Game by Andrew Myakis</div>
-  </div>
-  <div class="game-screen">
-    <div class="game-conteiner" onselectstart="return false">
-      <strong class="level">Level <span>1</span></strong>
-      <div class="ball-count">Кликай</div>
-      <!-- <p class="click-count" onselectstart="return false">Клик</p> -->
-      <div class="level-Up">
-        <div>
-          <p class="factor-clicker" data-price="100" data-count="100" data-level="1">
-            +1 Level (<span> 100 </span>)
-          </p>
-          <span> x1</span>
-        </div>
-        <div>
-          <p class="factor-clicker" data-price="1000" data-count="1000" data-level="10">
-            +10 Level (<span> 1 000 </span>)
-          </p>
-          <span> x0</span>
-        </div>
-        <div>
-          <p class="factor-clicker" data-price="10000" data-count="10000" data-level="100">
-            +100 Level (<span> 10 000 </span>)
-          </p>
-          <span> x0</span>
-        </div>
-        <div>
-          <p class="factor-clicker" data-price="1000000" data-count="1000000" data-level="1000">
-            +1000 Level (<span> 1 000 000 </span>)
-          </p>
-          <span> x0</span>
-        </div>
-        <div>
-          <div class="autoclick-div">
-            <p class="autoclicker">
-              Автокликер (<span class="autoclicker__count">100 000 </span>)
+    <div class="game-screen">
+      <div class="game-conteiner" onselectstart="return false">
+        <strong class="level">Level <span>1</span></strong>
+        <div class="ball-count">Кликай</div>
+        <!-- <p class="click-count" onselectstart="return false">Клик</p> -->
+        <div class="level-Up">
+          <div>
+            <p class="factor-clicker" data-price="100" data-count="100" data-level="1">+1 Level (<span> 100 </span>)</p>
+            <span> x1</span>
+          </div>
+          <div>
+            <p class="factor-clicker" data-price="1000" data-count="1000" data-level="10">+10 Level (<span> 1 000 </span>)</p>
+            <span> x0</span>
+          </div>
+          <div>
+            <p class="factor-clicker" data-price="10000" data-count="10000" data-level="100">
+              +100 Level (<span> 10 000 </span>)
             </p>
             <span> x0</span>
           </div>
+          <div>
+            <p class="factor-clicker" data-price="1000000" data-count="1000000" data-level="1000">
+              +1000 Level (<span> 1 000 000 </span>)
+            </p>
+            <span> x0</span>
+          </div>
+          <div>
+            <div class="autoclick-div">
+              <p class="autoclicker">Автокликер (<span class="autoclicker__count">100 000 </span>)</p>
+              <span> x0</span>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="game-end hidden">
-        <div class="end-wrapper">
-          <p class="end-reboot"><img src="img/reload.png" alt="" /></p>
+        <div class="game-end hidden">
+          <div class="end-wrapper">
+            <p class="end-reboot"><img src="img/reload.png" alt="" /></p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- <audio src="audio/click2.mp3" class="audio2"></audio>
+    <!-- <audio src="audio/click2.mp3" class="audio2"></audio>
     <audio src="audio/click.mp3" class="audio1"></audio>
     <audio src="audio/lose.mp3" class="lost"></audio> -->
 
-  <script src="js/main.js"></script>
-</body>
-
+    <script src="js/main.js"></script>
+  </body>
 </html>

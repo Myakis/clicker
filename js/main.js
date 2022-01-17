@@ -1,5 +1,7 @@
 //Констаны
 const btnStart = document.querySelector('.game-start');
+const btnContuen = document.querySelector('.game-continue');
+btnContuen.hidden = true;
 const mainScreen = document.querySelector('.main-screen');
 const count = document.querySelector('.ball-count');
 const click = document.querySelector('.click-count');
@@ -11,9 +13,11 @@ const level = document.querySelector('.level').firstElementChild;
 const reboot = document.querySelector('.end-reboot');
 
 const formatter = new Intl.NumberFormat('ru');
-const history = JSON.parse(localStorage.getItem('values'));
+
+//НАчать игру
+
+let history = JSON.parse(localStorage.getItem('values'));
 console.log(history);
-//
 
 let baseData = {
   yourCount: 0,
@@ -21,9 +25,24 @@ let baseData = {
   myLevel: 1,
 };
 const currentData = [];
+
 if (history) {
   baseData = history[0];
+  btnContuen.hidden = false;
+  btnContuen.addEventListener('click', event => {
+    mainScreen.classList.add('scroll-top');
+    gameConteiner.classList.add('scroll-top');
+  });
 }
+btnStart.addEventListener('click', event => {
+  baseData = {
+    yourCount: 0,
+    factorCount: 1,
+    myLevel: 1,
+  };
+  mainScreen.classList.add('scroll-top');
+  gameConteiner.classList.add('scroll-top');
+});
 console.log(baseData);
 //Random number
 function random(a, b) {
@@ -74,11 +93,6 @@ function gameLose() {
 function repeat() {
   document.querySelector('.game-end').classList.remove('hidden');
 }
-//НАчать игру
-btnStart.addEventListener('click', event => {
-  mainScreen.classList.add('scroll-top');
-  gameConteiner.classList.add('scroll-top');
-});
 
 count.addEventListener('click', clicker);
 //Автокликер функция
@@ -128,6 +142,7 @@ divAutoclicker.addEventListener('click', event => {
 //Если проиграл
 reboot.addEventListener('click', () => {
   location.reload();
+  localStorage.clear();
 });
 
 function randomColor() {
