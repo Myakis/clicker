@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
 * {
   padding: 0;
   margin: 0;
@@ -8,11 +9,12 @@
 
 body {
   height: 100vh;
+  font-family: "Montserrat", sans-serif;
   overflow: hidden;
 }
 
 .main-screen {
-  background: #20b0db;
+  background: rgb(32, 176, 219);
   position: relative;
   height: 100vh;
   display: -webkit-box;
@@ -56,14 +58,14 @@ body {
 .game-start {
   padding: 25px 30px;
   cursor: pointer;
-  background: #e48440;
+  background: rgb(228, 132, 64);
   border-radius: 50px;
   font-size: 20px;
   width: 60vw;
   text-align: center;
   -webkit-box-shadow: -7px -4px 10px black;
           box-shadow: -7px -4px 10px black;
-  color: #201d1d;
+  color: rgb(32, 29, 29);
   -webkit-transition: 0.1s -webkit-box-shadow ease;
   transition: 0.1s -webkit-box-shadow ease;
   -o-transition: 0.1s box-shadow ease;
@@ -83,14 +85,14 @@ body {
   margin-top: 50px;
   cursor: pointer;
   padding: 25px 30px;
-  background: #40e477;
+  background: rgb(64, 228, 119);
   border-radius: 50px;
   font-size: 20px;
   width: 60vw;
   text-align: center;
   -webkit-box-shadow: 0px 5px 2px #22294e;
           box-shadow: 0px 5px 2px #22294e;
-  color: #201d1d;
+  color: rgb(32, 29, 29);
   -webkit-transition: 0.1s -webkit-box-shadow ease;
   transition: 0.1s -webkit-box-shadow ease;
   -o-transition: 0.1s box-shadow ease;
@@ -150,7 +152,7 @@ body {
       align-self: center;
   justify-self: end;
   margin-bottom: 15px;
-  color: #dbcaca;
+  color: rgb(219, 202, 202);
 }
 
 .game-screen {
@@ -177,8 +179,8 @@ body {
   -o-transition: transform 0.5s ease;
   transition: transform 0.5s ease;
   transition: transform 0.5s ease, -webkit-transform 0.5s ease;
-  background: #5973e6;
-  background: #20b0db;
+  background: rgb(89, 115, 230);
+  background: rgb(32, 176, 219);
   height: 100%;
 }
 
@@ -189,7 +191,8 @@ body {
   z-index: 51;
 }
 .level span {
-  color: #9452a5;
+  padding-left: 0.5rem;
+  color: rgb(148, 82, 165);
 }
 
 .ball-count {
@@ -205,7 +208,7 @@ body {
   padding: 25px 15px;
   min-width: 150px;
   min-height: 150px;
-  background: #ff0c0c;
+  background: rgb(255, 12, 12);
   line-height: 0.5em;
   border-radius: 50%;
   font-size: 35px;
@@ -226,13 +229,13 @@ body {
   text-align: center;
   border-radius: 50px;
   cursor: pointer;
-  color: #201d1d;
-  -webkit-box-shadow: -7px -4px 10px #887f7f;
-          box-shadow: -7px -4px 10px #887f7f;
+  color: rgb(32, 29, 29);
+  -webkit-box-shadow: -7px -4px 10px rgb(136, 127, 127);
+          box-shadow: -7px -4px 10px rgb(136, 127, 127);
 }
 .click-count:active {
-  -webkit-box-shadow: 9px 10px 16px 1px #4d3333;
-          box-shadow: 9px 10px 16px 1px #4d3333;
+  -webkit-box-shadow: 9px 10px 16px 1px rgb(77, 51, 51);
+          box-shadow: 9px 10px 16px 1px rgb(77, 51, 51);
 }
 
 .autoclick-div {
@@ -248,14 +251,15 @@ body {
 }
 
 .autoclicker {
-  min-width: 170px;
+  min-width: 230px;
   font-size: 15px;
-  background: #9452a5;
+  background: rgb(148, 82, 165);
   padding: 5px 15px;
   text-align: center;
   border-radius: 50px;
+  font-weight: 500;
   cursor: pointer;
-  color: #201d1d;
+  color: rgb(32, 29, 29);
   -webkit-box-shadow: 0px 5px 2px #22294e;
           box-shadow: 0px 5px 2px #22294e;
 }
@@ -266,15 +270,19 @@ body {
 
 .factor-clicker {
   font-size: 15px;
-  background: #9452a5;
+  background: rgb(148, 82, 165);
   padding: 5px 15px;
   text-align: center;
   border-radius: 50px;
   cursor: pointer;
-  color: #201d1d;
+  color: rgb(32, 29, 29);
   -webkit-box-shadow: 0px 5px 2px #22294e;
           box-shadow: 0px 5px 2px #22294e;
-  min-width: 170px;
+  min-width: 230px;
+  font-weight: 500;
+  -webkit-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
 }
 .factor-clicker span {
   z-index: -1;
@@ -320,6 +328,7 @@ body {
 }
 
 .end-wrapper {
+  border-radius: 100%;
   position: relative;
   top: 50%;
   left: 50%;
@@ -327,7 +336,7 @@ body {
       -ms-transform: translateX(-50%) translateY(-50%);
           transform: translateX(-50%) translateY(-50%);
   width: 500px;
-  height: 450px;
+  height: 500px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -337,7 +346,7 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background: #b40b5a;
+  background: rgb(180, 11, 90);
 }
 
 .end-reboot {
