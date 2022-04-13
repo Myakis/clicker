@@ -10,57 +10,61 @@ const factorBtn = document.querySelector('.factor-clicker');
 const gameContainer = document.querySelector('.game-conteiner');
 const level = document.querySelector('.level').firstElementChild;
 const reboot = document.querySelector('.end-reboot');
+const items = document.querySelectorAll('.factor-clicker');
 btnContinue.hidden = true;
 
 const formatter = new Intl.NumberFormat('ru');
 
 const initializingVariables = baseData => {
+  const counts = Object.values(baseData.itemCounts);
+  const prices = Object.values(baseData.itemsPrice);
   level.innerHTML = baseData.myLevel;
   count.textContent = formatter.format(baseData.yourCount);
+  items.forEach((el, i) => {
+    el.dataset.counts = counts[i];
+    el.dataset.price = prices[i];
+    initializingItems(el, counts[i]);
+  });
 };
 
-//НАчать игру
+//Начать игру
 
 let history = JSON.parse(localStorage.getItem('values'));
-
 let baseData = {
   yourCount: 0,
   factorCount: 1,
   myLevel: 1,
-  countsLevelItems: {
-    levelItemOne: 1,
-    levelItemTwo: 0,
-    levelItemThree: 0,
-    levelItemFour: 0,
-    levelItemFive: 0,
+  itemCounts: {
+    1: 1,
+    10: 0,
+    100: 0,
+    1000: 0,
+  },
+  itemsPrice: {
+    1: 100,
+    10: 1000,
+    100: 10000,
+    1000: 1000000,
   },
 };
-const currentData = [];
 
 if (history !== null) {
-  baseData = history[0];
   btnContinue.hidden = false;
-  btnContinue.addEventListener('click', () => {
-    initializingVariables(baseData);
-    mainScreen.classList.add('scroll-top');
-    gameContainer.classList.add('scroll-top');
-  });
 }
 
 btnStart.addEventListener('click', () => {
-  baseData = {
-    yourCount: 0,
-    factorCount: 1,
-    myLevel: 1,
-  };
+  localStorage.clear();
+
   mainScreen.classList.add('scroll-top');
   gameContainer.classList.add('scroll-top');
 });
 
-//Random number
-function random(a, b) {
-  return Math.floor(Math.random() * (b - a + 1) + a);
-}
+btnContinue.addEventListener('click', () => {
+  baseData = history;
+  initializingVariables(baseData);
+  mainScreen.classList.add('scroll-top');
+  gameContainer.classList.add('scroll-top');
+});
 
 // Клик на кнопку
 function clicker() {
@@ -71,25 +75,12 @@ function clicker() {
   count.style.boxShadow = `1px 0px 15px 6px ${randomColor()}`;
   audioPlay('audio/click2.mp3');
 
-  currentData.push(baseData);
-
-  if (currentData.length > 1) {
-    currentData.splice(0, 1);
-  }
-
-  localStorage.setItem('values', JSON.stringify(currentData));
+  localStorage.setItem('values', JSON.stringify(baseData));
 }
 
 function autoClickerRepeat() {
   baseData.yourCount += baseData.factorCount;
   count.textContent = formatter.format(baseData.yourCount);
-}
-
-//аудио
-function audioPlay(search) {
-  const audio = new Audio();
-  audio.src = search;
-  audio.play();
 }
 
 function gameLose() {
@@ -104,8 +95,8 @@ function repeat() {
 }
 
 count.addEventListener('click', clicker);
-//Автокликер функция
 
+//Автокликер функция
 function autoClickerFunc(param) {
   audioPlay('audio/click.mp3');
   // document.querySelector(".audio1").play();
@@ -122,46 +113,32 @@ function autoClickerFunc(param) {
 
     param.firstElementChild.innerHTML = formatter.format(currentPrice);
   } else {
-    baseData.yourCount -= 'Lose';
-    count.textContent = baseData.yourCount;
-    gameLose();
-    repeat();
+    toLostInGame();
   }
 }
 
 //Автокликер
 let currentCount = 100000;
-divAutoClicker.addEventListener('click', event => {
-  if (event.target.className === 'autoclicker') {
-    autoClickerFunc(event.target);
-  }
-  //При нажатии на span в блоке autoclick-div
-  //Костыль, который нужно будет пофкисить
-  if (event.target.className === 'autoclicker__count') {
-    let parent = event.target.parentElement;
-    autoClickerFunc(parent);
-  }
-  localStorage.setItem('values', JSON.stringify(currentData));
-  currentData.push(baseData);
+divAutoClicker &&
+  divAutoClicker.addEventListener('click', event => {
+    if (event.target.className === 'autoclicker') {
+      autoClickerFunc(event.target);
+    }
+    //При нажатии на span в блоке autoclick-div
+    //Костыль, который нужно будет пофкисить
+    if (event.target.className === 'autoclicker__count') {
+      let parent = event.target.parentElement;
+      autoClickerFunc(parent);
+    }
+    localStorage.setItem('values', JSON.stringify(baseData));
+    currentData.push(baseData);
 
-  if (currentData.length > 1) {
-    currentData.splice(0, 1);
-  }
-});
+    if (currentData.length > 1) {
+      currentData.splice(0, 1);
+    }
+  });
 
-//Если проиграл
-reboot.addEventListener('click', () => {
-  location.reload();
-  localStorage.clear();
-});
-
-function randomColor() {
-  return `rgb(${Math.round(Math.random() * 255)},${Math.round(Math.random() * 255)},${Math.round(
-    Math.random() * 255,
-  )})`;
-}
-
-//ДЕЛЕГИРОВАНИЕ
+//Делегирование при клике на покупку уровня
 gameContainer.addEventListener('click', event => {
   if (event.target.closest('.factor-clicker')) {
     const dataValue = event.target.dataset.price ? event.target : event.target.parentElement;
@@ -169,11 +146,35 @@ gameContainer.addEventListener('click', event => {
   }
 });
 
-//
+function initializingItems(param, upLevel, isClick = false) {
+  let priceLvl = param.firstElementChild;
+  param.nextElementSibling.innerHTML = `x${upLevel}`;
+  upLevel = upLevel ? upLevel : 1;
+
+  if (upLevel === 1) {
+    const upCount = +param.dataset.price + param.dataset.price / upLevel;
+    const formatPrice = upCount;
+    if (isClick) {
+      priceLvl.textContent = formatter.format(formatPrice);
+      param.dataset.price = upCount;
+    }
+  } else {
+    const expression = +param.dataset.level === 1 ? upLevel - 1 : upLevel;
+    const upCount = +param.dataset.price + param.dataset.price / expression;
+    const formatPrice = upCount;
+
+    if (isClick) {
+      priceLvl.textContent = formatter.format(formatPrice);
+      param.dataset.price = upCount;
+    }
+  }
+}
+
+//Логика при клике на покупку уровня
 function clickContainer(param) {
-  let dataPrice = +param.dataset.price;
-  const datasetCount = +param.dataset.count;
   const datasetLvl = +param.dataset.level;
+  let dataPrice = +param.dataset.price;
+
   audioPlay('audio/click.mp3');
   if (baseData.yourCount >= dataPrice) {
     baseData.factorCount += datasetLvl;
@@ -181,33 +182,70 @@ function clickContainer(param) {
     level.innerHTML = baseData.myLevel;
 
     baseData.yourCount -= dataPrice;
+
     //change ball with num
     count.textContent = formatter.format(baseData.yourCount);
 
-    param.dataset.countsLevel = +param.dataset.countsLevel + 1;
-    let upLevel = +param.dataset.countsLevel;
+    //Значение на которое будет увеличиваться lvl
+    // let upCountLvl = dataPrice / +param.dataset.counts;
+
+    if (+param.dataset.counts === 0) {
+      upCountLvl = dataPrice;
+    }
+
+    //Увеличение купленных бустов на один
+    param.dataset.counts = +param.dataset.counts + 1;
+    let upLevel = +param.dataset.counts;
 
     ///Увеличение количества покупки уровней
     param.nextElementSibling.innerHTML = `x${upLevel}`;
 
     //Увеличение
-    dataPrice += datasetCount;
-    let priceLvl = param.firstElementChild;
 
-    let formatPrice = +priceLvl.innerHTML.match(/\d+/gi).join('') + datasetCount;
+    initializingItems(param, upLevel, true);
 
-    priceLvl.textContent = formatter.format(formatPrice);
-    param.dataset.price = +param.dataset.price + datasetCount;
-    localStorage.setItem('values', JSON.stringify(currentData));
-    currentData.push(baseData);
-
-    if (currentData.length > 1) {
-      currentData.splice(0, 1);
-    }
+    baseData.itemCounts[datasetLvl] = upLevel;
+    baseData.itemsPrice[datasetLvl] = dataPrice;
+    console.log(dataPrice);
+    localStorage.setItem('values', JSON.stringify(baseData));
   } else {
-    baseData.yourCount = 0;
-    count.textContent = baseData.yourCount;
-    gameLose();
-    setTimeout(repeat, 100);
+    toLostInGame();
   }
+}
+
+///==========================================================================================================
+
+//UTILS
+
+//Random number
+function random(a, b) {
+  return Math.floor(Math.random() * (b - a + 1) + a);
+}
+
+//Random color
+function randomColor() {
+  return `rgb(${Math.round(Math.random() * 255)},${Math.round(Math.random() * 255)},${Math.round(
+    Math.random() * 255,
+  )})`;
+}
+
+//Перезагрузка страницы при проигрыше
+reboot.addEventListener('click', () => {
+  location.reload();
+  localStorage.clear();
+});
+
+//audioPlay
+function audioPlay(search) {
+  const audio = new Audio();
+  audio.src = search;
+  audio.play();
+}
+
+//При проигрыше предлагать начать сначала
+function toLostInGame() {
+  baseData.yourCount = 0;
+  count.textContent = baseData.yourCount;
+  gameLose();
+  setTimeout(repeat, 100);
 }
