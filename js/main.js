@@ -85,6 +85,7 @@ function autoClickerRepeat() {
 
 function gameLose() {
   baseData.myLevel = 'Ты проиграл';
+  level.parentElement.classList.add('lose');
   level.parentElement.innerHTML = baseData.myLevel;
   audioPlay('audio/lose.mp3');
   localStorage.clear();
@@ -152,21 +153,26 @@ function initializingItems(param, upLevel, isClick = false) {
   upLevel = upLevel ? upLevel : 1;
 
   if (upLevel === 1) {
-    const upCount = +param.dataset.price + param.dataset.price / upLevel;
-    const formatPrice = upCount;
-    if (isClick) {
-      priceLvl.textContent = formatter.format(formatPrice);
-      param.dataset.price = upCount;
+    const expression = +param.dataset.level === 1 ? upLevel - 1 : upLevel;
+    let upCount = +param.dataset.price + param.dataset.price / expression;
+    if (!isClick) {
+      upCount = +param.dataset.price;
     }
+    const formatPrice = upCount;
+    priceLvl.textContent = formatter.format(formatPrice);
+    param.dataset.price = upCount;
   } else {
     const expression = +param.dataset.level === 1 ? upLevel - 1 : upLevel;
-    const upCount = +param.dataset.price + param.dataset.price / expression;
+
+    let upCount = +param.dataset.price + param.dataset.price / expression;
+
+    if (!isClick) {
+      upCount = +param.dataset.price;
+    }
     const formatPrice = upCount;
 
-    if (isClick) {
-      priceLvl.textContent = formatter.format(formatPrice);
-      param.dataset.price = upCount;
-    }
+    priceLvl.textContent = formatter.format(formatPrice);
+    param.dataset.price = upCount;
   }
 }
 
@@ -186,12 +192,9 @@ function clickContainer(param) {
     //change ball with num
     count.textContent = formatter.format(baseData.yourCount);
 
-    //Значение на которое будет увеличиваться lvl
-    // let upCountLvl = dataPrice / +param.dataset.counts;
-
-    if (+param.dataset.counts === 0) {
-      upCountLvl = dataPrice;
-    }
+    // if (+param.dataset.counts === 0) {
+    //   upCountLvl = dataPrice;
+    // }
 
     //Увеличение купленных бустов на один
     param.dataset.counts = +param.dataset.counts + 1;
@@ -205,8 +208,7 @@ function clickContainer(param) {
     initializingItems(param, upLevel, true);
 
     baseData.itemCounts[datasetLvl] = upLevel;
-    baseData.itemsPrice[datasetLvl] = dataPrice;
-    console.log(dataPrice);
+    baseData.itemsPrice[datasetLvl] = +param.dataset.price;
     localStorage.setItem('values', JSON.stringify(baseData));
   } else {
     toLostInGame();
