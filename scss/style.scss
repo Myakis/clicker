@@ -47,7 +47,7 @@ body {
   box-shadow: -7px -4px 10px black;
   color: rgb(32, 29, 29);
   transition: 0.1s box-shadow ease;
-  margin-top: -150px;
+  // margin-top: -150px;
   box-shadow: 0px 5px 2px #22294e;
   &:active {
     box-shadow: 0px 0px 0px #1b234d;
@@ -55,7 +55,8 @@ body {
 }
 .game-continue {
   position: relative;
-  margin-top: 50px;
+  margin-top: -150px;
+  margin-bottom: 30px;
   cursor: pointer;
   padding: 25px 30px;
   background: rgb(64, 228, 119);
